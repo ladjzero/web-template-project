@@ -9,7 +9,7 @@ const {
   webpack: { publicPath },
 } = require('./package.json');
 
-module.exports = {
+module.exports = [{
   devServer: {
     contentBase: false,
     hot: true,
@@ -26,6 +26,7 @@ module.exports = {
       ],
     },
   },
+  devtool: 'sourcemap',
   entry: {
     [moduleName]: path.join(__dirname, './src/index.js'),
   },
@@ -78,4 +79,4 @@ module.exports = {
     new ModulePlugin({ moduleName, register: false }),
     new ExternalsPlugin(),
   ],
-};
+}, ...(process.env.NODE_ENV === 'production' ? [require('./webpack.node.config')] : [])];

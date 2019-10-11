@@ -14,13 +14,13 @@ const ClusterDetailPage = Loadable({
 });
 
 export default {
-  path: '/x-clusters',
-  name: 'X-Clusters',
+  path: '/clusters',
+  name: 'Cluster Management',
   component: ClusterListPage,
   childRoutes: [
     {
-      path: '/x-clusters/:name',
-      name: 'X-Clusters-Detail',
+      path: '/clusters/:name',
+      name: 'Cluster Detail',
       component: ClusterDetailPage,
     },
   ],

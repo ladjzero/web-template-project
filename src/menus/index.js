@@ -1,10 +1,10 @@
 export default {
-  x: {
-    group: 'x',
+  resources_center: {
+    group: 'resources',
     children: {
-      'x-cluster-list': {
-        text: 'x-cluster-list',
-        to: '/x-clusters',
+      'cluster': {
+        text: 'cluster',
+        to: '/clusters',
       },
     },
   },

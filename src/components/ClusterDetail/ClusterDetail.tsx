@@ -1,33 +1,31 @@
 import React from 'react';
-import { Query } from 'react-apollo';
+import { withApollo, WithApolloClient } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import { Spin } from 'antd';
 import query from './query';
 
-type ClusterDetailProps = {
+type ClusterDetailProps = WithApolloClient<{
   params: {
     name: string
   }
-}
+}>
 
-export default function ClusterDetail({ params }: ClusterDetailProps) {
+export default withApollo(ClusterDetail);
+
+function ClusterDetail({ params, client }: ClusterDetailProps) {
+  const { data, loading } = useQuery(query, {
+    variables: { nid: `Cluster:${params.name}` },
+    client
+  });
+
+
+  if (loading) {
+    return <Spin />
+  }
+
   return (
-    <Query
-      query={query}
-      variables={{ nid: `RCluster:${params.name}` /* v2.9 后 RCluster 改为 Cluster */ }}
-    >
-      {
-        ({ data, loading }) => {
-          if (loading) {
-            return <Spin />
-          }
-
-          return (
-            <span>
-              cluster name is {data.node.name}
-            </span>
-          )
-        }
-      }
-    </Query>
-  );
+    <span>
+      cluster name is {data.node.name}
+    </span>
+  )
 }
