@@ -85,7 +85,7 @@ docker run -p <port>:3000 cargo.dev.caicloud.xyz/release/x-web:<VERSION>
 ├── package.json
 ├── release
 │   └── x-web.yaml
-├── src
+├── client
 │   ├── components
 │   ├── menus
 │   └── routes
@@ -107,5 +107,5 @@ A brief description of the layout:
 - `docs` for project documentations.
 - `release` [chart](https://github.com/caicloud/charts) for production deployment.
 - `scripts` shell scripts for extra works
-- `src` for client side codes.
+- `client` for client side codes.
 - `server` for server side codes, if any.
